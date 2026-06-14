@@ -10,7 +10,7 @@
 
 1. 오라클 DB설치<br>
    1) 오라클 설치 확인<br>
- 	ㄴ cmd : sqlplus -v<br>
+ 	ㄴ cmd : sqlplus -v << 버전확인<br>
 	ㄴ cmd : services.msc ( 검색창에 서비스검색)<br>
 	    (설치된것중에 아래창 있는지 확인) <br>
 		OracleServiceXE<br>
@@ -97,9 +97,32 @@ CDB$ROOT
 
 
 
+명령어 정리
+sqlplus - v   <<  버전확인 <br>
+lsnrctl status  << 리스너 상태확인 <br>
+lsnrctl start   << 리스너 실행 <br>
+lsnrctl stop    << 리스너 종료 <br>
+lsnrctl services << 등록된 서비스명 확인 <br>
+sqlplus sys/비밀번호@localhost:1521/orcl as sysdba <br>
+또는 <br>
+sqlplus / as sysdba << SQLPlus  sys 계정 접속 <br>
+SELECT username FROM DBA_USERS;  << 현재 데이터베이스 확인 <br>
+SHOW USER;   << 현재 사용자 확
+
+
+
 
 
 		
 
 -------------------------------------------------------------------------------------------------------
+
+<h2>2026-06-15 수업자료</h2>
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------
+
 
