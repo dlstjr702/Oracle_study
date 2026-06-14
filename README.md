@@ -46,7 +46,7 @@ CDB$ROOT
      명령어
      CREATE USER c##hong IDENTIFIED BY 1234; (공통사용자시 c##) >> 계정생성
      sqlplus / as sysdba >> 계정으로 접속
-     show user  >>누구로 접속한건지 보는법
+     show user  >>현재 접속한 유저
      sqlplus sys/ss123$@localhost:1521/xe as sysdba
      disconn
      exit  >> 나가기
