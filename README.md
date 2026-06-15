@@ -151,6 +151,46 @@ DROP USER C##HONG CASCADE;
 
 
 
+
+
+
+Copyright (c) 1982, 2021, Oracle.  All rights reserved.
+
+
+다음에 접속됨:
+Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+SQL> ALTER SESSION SET CONTAINER = XEPDB1;
+
+세션이 변경되었습니다.
+
+SQL> show con_name;
+
+CON_NAME
+------------------------------
+XEPDB1
+SQL> @?/demo/schema/human_resources/hr_main.sql
+
+specify password for HR as parameter 1:
+1의 값을 입력하십시오: lion
+
+specify default tablespeace for HR as parameter 2:
+2의 값을 입력하십시오: users
+
+specify temporary tablespace for HR as parameter 3:
+3의 값을 입력하십시오: temp
+
+specify log path as parameter 4:
+4의 값을 입력하십시오: C:\app\Tkddyd\product\21c\dbhomeXE\demo\schema\log
+
+
+
+
+
+
+
+
 -------------------------------------------------------------------------------------------------------
 
 
