@@ -103,12 +103,13 @@ lsnrctl status  << 리스너 상태확인 <br>
 lsnrctl start   << 리스너 실행 <br>
 lsnrctl stop    << 리스너 종료 <br>
 lsnrctl services << 등록된 서비스명 확인 <br>
-sqlplus sys/비밀번호@localhost:1521/orcl as sysdba <br>
+sqlplus sys/비밀번호@localhost:1521/as sysdba <br>
 또는 <br>
 sqlplus / as sysdba << SQLPlus  sys 계정 접속 <br>
 SELECT username FROM DBA_USERS;  << 현재 데이터베이스 확인 <br>
-SHOW USER;   << 현재 사용자 확
-
+SHOW USER;   << 현재 사용자 확인
+SHOW CON_NAME; << 현재 상자 이름
+SHOW PDBS  << pdb확인
 
 
 
@@ -119,7 +120,34 @@ SHOW USER;   << 현재 사용자 확
 
 <h2>2026-06-15 수업자료</h2>
 
-
+1. CMD  SYS 계정으로 접속(연결)
+sqlplus sys/ss123$@localhost:1521/XE as sysdba
+2. 접속한 계정 확인
+show user
+3. 컨테이너 이름 확인
+show con_name
+4. PDBS 목록 확인
+show pdbs;
+5. PDB로 이동
+ALTER SESSION SET CONTAINER = XEPDB1;
+6. SCOTT 계정 확인
+select username from dba_users where username='SCOTT';
+7. SCOTT 권한 확인
+SELECT * FROM DBA_SYS_PRIVS WHERE GRANTEE='SCOTT';
+8. SCOTT 롤(ROLE) 확인
+SELECT * FROM DBA_ROLE_PRIVS WHERE GRANTEE='SCOTT';
+9. XEPDB1에 HR계정 유무확인
+select username from dba_users where username='HR';
+10. HR/lion 계정 생성
+CREATE USER HR IDENTIFIED BY lion DEFAULT TABLESPACE users;
+11. HR 계정 권한 부여
+GRANT CONNECT,RESOURCE,UNLIMITED TABLESPACE TO HR;
+12. CDB 전체사용가능한 C##HONG 계정확인
+select username from dba_users where username='C##HONG';
+13. CDB 컨테이너 이동
+ ALTER SESSION SET CONTAINER= CDB$ROOT;
+14. C##HONG 계정삭제
+DROP USER C##HONG CASCADE;
 
 
 
