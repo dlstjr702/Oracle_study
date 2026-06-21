@@ -221,3 +221,190 @@ order by 정렬기준 | 6. 순서(정렬)<br>
 
 - 쿼리 연습
 
+- 
+
+--------------------------------------------------------------------------
+--🟢 1번 (INNER JOIN 기본)
+--
+--EMP 테이블과 DEPT 테이블을 이용해서
+--
+--👉 사원 이름, 부서명, 급여를 출력하시오.
+--
+--EMP: empno, ename, deptno, sal
+--DEPT: deptno, dname
+--
+--조건
+--부서가 있는 사원만 출력
+
+SELECT e.ename,e.deptno, e.sal
+FROM emp e LEFT JOIN dept d ON d.deptno = e.deptno;
+
+
+
+
+--------------------------------------------------------------------------
+--🟢 2번 (JOIN + 조건)
+--
+--👉 부서명이 'SALES'인 사원들의 이름과 급여를 출력하시오.
+--
+
+SELECT *
+FROM DEPT;
+
+SELECT e.ename,e.sal
+FROM emp e JOIN dept d ON e.deptno = d.deptno
+WHERE d.dname = 'SALES';
+
+
+
+
+--SELECT ename, job,sal
+--FROM emp
+--WHERE SUBSTR(job,1,5)= 'SALES';
+
+
+--------------------------------------------------------------------------
+--🟢 3번 (SELF JOIN)
+--
+--EMP 테이블에서
+--
+--👉 사원 이름과 해당 사원의 매니저 이름을 출력하시오.
+--
+--EMP.empno = 사원
+--EMP.mgr = 매니저 empno
+
+SELECT e.ename,e.mgr
+FROM emp e JOIN emp d ON e.deptno = d.deptno;
+
+
+
+--------------------------------------------------------------------------
+--🟢 4번 (LEFT JOIN)
+--
+--👉 모든 부서와 그 부서에 속한 사원 수를 출력하시오.
+--
+--(사원이 없는 부서도 포함)
+--
+
+
+SELECT d.deptno,COUNT(e.empno)
+FROM  dept d LEFT JOIN emp e  ON  d.deptno= e.deptno
+GROUP BY d.deptno;
+
+
+--------------------------------------------------------------------------
+--🟢 5번 (JOIN + WHERE 조건)
+--
+--👉 급여가 3000 이상인 사원의 이름, 부서명 출력
+--
+--🔥 GROUP BY 핵심 문제 세트
+
+SELECT e.ename,d.dname
+FROM  dept d LEFT JOIN emp e  ON  d.deptno= e.deptno
+WHERE e.sal>=3000;
+
+--------------------------------------------------------------------------
+--🟡 6번 (기본 GROUP BY)
+--
+--👉 부서별 사원 수를 출력하시오.
+--
+
+SELECT d.deptno, COUNT(*)
+FROM emp e JOIN dept d ON e.deptno = d.deptno
+GROUP BY d.deptno
+
+--------------------------------------------------------------------------
+--🟡 7번 (GROUP BY + AVG)
+--
+--👉 부서별 평균 급여를 출력하시오.
+--
+SELECT d.deptno, AVG(e.sal)
+FROM emp e JOIN dept d ON e.deptno = d.deptno
+GROUP BY d.deptno
+
+
+--------------------------------------------------------------------------
+--🟡 8번 (GROUP BY + HAVING)
+--
+--👉 사원 수가 3명 이상인 부서만 출력하시오.
+--
+SELECT d.deptno, COUNT(*)
+FROM emp e JOIN dept d ON e.deptno = d.deptno
+GROUP BY d.deptno
+HAVING COUNT(*) >=3
+
+
+--------------------------------------------------------------------------
+--🟡 9번 (GROUP BY + SUM)
+--
+--👉 부서별 급여 총합을 출력하시오.
+--
+
+SELECT d.deptno, SUM(e.sal)
+FROM emp e JOIN dept d ON e.deptno = d.deptno
+GROUP BY d.deptno
+--------------------------------------------------------------------------
+--🟡 10번 (GROUP BY + 정렬)
+--
+--👉 부서별 평균 급여를 구하고, 평균 급여 높은 순으로 정렬하시오.
+--
+SELECT d.deptno, AVG(e.sal)
+FROM emp e JOIN dept d ON e.deptno = d.deptno
+GROUP BY d.deptno
+ORDER BY AVG(e.sal) DESC
+
+--------------------------------------------------------------------------
+--🟡 11번 (GROUP BY + 2컬럼)
+--
+--👉 부서별 + 직무별 사원 수를 출력하시오.
+--
+
+SELECT d.deptno, job,COUNT(*)
+FROM emp e JOIN dept d ON e.deptno = d.deptno
+GROUP BY d.deptno,e.job
+
+
+SELECT *
+FROM emp
+
+--------------------------------------------------------------------------
+--🟡 12번 (HAVING 핵심)
+--
+--👉 평균 급여가 2000 이상인 부서만 출력하시오.
+--
+--🔥 JOIN + GROUP BY 합체 문제 (시험 핵심)
+
+SELECT d.deptno,AVG(e.sal)
+FROM emp e JOIN dept d ON e.deptno = d.deptno
+GROUP BY d.deptno
+HAVING AVG(e.sal)>=2000
+
+
+--------------------------------------------------------------------------
+--🔴 13번 (가장 중요)
+--
+--👉 부서명별 사원 수를 출력하시오.
+--
+--DEPT + EMP JOIN
+--사원 없는 부서도 포함
+
+
+SELECT d.dname, COUNT(e.empno)
+FROM dept d JOIN emp e ON d.deptno = e.deptno
+GROUP BY d.dname;
+
+--------------------------------------------------------------------------
+c
+
+--------------------------------------------------------------------------
+--🔴 15번 (실전형)
+--
+--👉 부서명 + 직무별 사원 수를 출력하시오.
+
+SELECT d.dname,e.job ,COUNT(*)
+FROM dept d JOIN emp e ON d.deptno = e.deptno
+GROUP BY d.dname,e.job;
+
+
+
+
