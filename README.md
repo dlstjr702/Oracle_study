@@ -439,6 +439,13 @@ https://terms.naver.com/entry.naver?docId=3431222&ref=y&cid=58430&categoryId=584
 -- 조인정리<br>
 -- 뷰<br>
 -- PL/SQL<br>
+- exERD
+<img width="596" height="637" alt="화면 캡처 2026-06-24 103634" src="https://github.com/user-attachments/assets/fb13d932-cc4d-468e-acf7-f2309560507a" />
+
+
+
+
+
 
 -------------------------------------------------------------------------------------------------------
 <h2>2026-06-25 ~ 2026-06-26 수업자료</h2>
