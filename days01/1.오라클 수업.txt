@@ -1,0 +1,64 @@
+1. 오라클 DB설치
+   1) 오라클 설치 확인
+ 	ㄴ cmd : sqlplus -v
+	ㄴ cmd : services.msc ( 검색창에 서비스검색)
+	    (설치된것중에 아래창 있는지 확인) 
+		OracleServiceXE
+		OracleOraDB21Home1TNSListener	
+	ㄴ 리스너 확인
+	     cmd : lsnrctl status
+	ㄴ 데이터베이스 접속 확인: sqlplus / as sysdba
+	ㄴ Oracle Home 확인 : echo %ORACLE_HOME% 
+   
+    2) 오라클삭제(이전에 설치된적이 있다면)
+	ㄴ Oracle 관련 서비를 모두 중지
+	     cmd : services.msc
+        ㄴ 제어판 > 오라클 설치된것 선택 > 프로그램 제거 또는 삭제클릭
+	ㄴ 폴더삭제
+        ㄴ 환경변수 설정된게 있다면 제거하기
+        ㄴ 레지스트리 정리(선택)
+    3) 오라클 다운로드 및 설치 (21c EX)
+        ㄴhttps://www.oracle.com/kr/database/technologies/xe-downloads.html?BOdNws=wHeEJ&utm_source=chatgpt.com
+        ㄴ OracleXE213_Win64.zip
+        ㄴ setup.exe 반드시 관리자 권한으로 실행
+        ㄴ SYS/SYSTEM/PDBADMIN 비밀번호 입력:  ss123$(대소문자구분하기)
+        설치 완료후 익스플로러 창에서 https://localhost:5500/em
+
+2. Scott 계정 생성
+    1) 관리자 계정으로 오라클 서버에 접속 : sqlplus 툴사용 (sqlplus /?)
+    sqlplus / as sysdba > db 접속
+     SQL> show con_name >> 현재 컨테이너를 확인하는 명령어
+     CON_NAME
+------------------------------
+CDB$ROOT
+
+     CDB계정
+     명령어
+     CREATE USER c##hong IDENTIFIED BY 1234; (공통사용자시 c##) >> 계정생성
+     sqlplus / as sysdba >> 계정으로 접속
+     show user  >>누구로 접속한건지 보는법
+     sqlplus sys/ss123$@localhost:1521/xe as sysdba
+     disconn
+     exit  >> 나가기
+     SLECT > 조회
+     윗방향키 누르면 카피
+     show pdbs >> 컨테이너 항목조회
+
+    SQL> SELECT username
+    FROM DBA_USERS;   >>유저조회
+
+
+     
+     PDB 계정
+     ㄴ  scott/tiger 
+         (CREATE USER scott IDENTIFIED BY tiger DEFAULT TABLESPACE users;)<<scott 계정 생성명령어
+
+   	CONNECT 로그인할수있는 권한 부여
+   	RESOURCE   리소스 모든 권한 부여
+   	UNLIMITED  
+
+	ALTER USER SCOTT DEFAULT TABLESPACE USERS;
+	ALTER USER SCOTT TEMPORARY TABLESPACE TEMP;
+
+
+3. Sql Developer 설치
